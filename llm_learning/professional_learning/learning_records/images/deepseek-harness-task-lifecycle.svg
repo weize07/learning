@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="1080" viewBox="0 0 1100 1080" role="img" aria-labelledby="title desc">
+  <title id="title">DeepSeek Harness 一次只读任务的执行主链</title>
+  <desc id="desc">headless 入口创建 Agent 后提交消息。loop 记录边界、从 Session 推导请求，调用模型，执行模型建议的 read 工具并记录结果，再请求模型得到最终回复。收束后入口输出结果。此图是静态源码主路径的简化，不是运行日志或所有分支的逐函数图。</desc>
+  <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0L0 8L8 4Z" fill="#475569"/></marker></defs>
+  <rect width="1100" height="1080" fill="#fff"/>
+  <g font-family="Segoe UI, Microsoft YaHei, sans-serif" fill="#0f172a" text-anchor="middle">
+    <text x="550" y="34" font-size="23" font-weight="bold">一次读文件任务：谁驱动、谁执行、谁保存、谁交付</text>
+    <text x="550" y="63" font-size="15">前提：插件已装配，入口已完成 Agent 创建；正常路径，无子 Agent 或额外输入</text>
+    <rect x="20" y="85" width="170" height="65" rx="8" fill="#f1f5f9" stroke="#64748b"/>
+    <text x="105" y="113" font-size="17">headless 入口</text><text x="105" y="137" font-size="14">接收任务 / 输出结果</text>
+    <rect x="235" y="85" width="170" height="65" rx="8" fill="#dbeafe" stroke="#2563eb"/>
+    <text x="320" y="113" font-size="17">Agent / loop</text><text x="320" y="137" font-size="14">队列与控制流</text>
+    <rect x="450" y="85" width="170" height="65" rx="8" fill="#f1f5f9" stroke="#64748b"/>
+    <text x="535" y="113" font-size="17">Session</text><text x="535" y="137" font-size="14">记录 / 历史推导</text>
+    <rect x="665" y="85" width="170" height="65" rx="8" fill="#ede9fe" stroke="#7c3aed"/>
+    <text x="750" y="113" font-size="17">LLM 服务</text><text x="750" y="137" font-size="14">适配器 / 模型</text>
+    <rect x="880" y="85" width="200" height="65" rx="8" fill="#dcfce7" stroke="#16a34a"/>
+    <text x="980" y="113" font-size="17">工具管线 / 文件后端</text><text x="980" y="137" font-size="14">策略检查 / 实际读取</text>
+  </g>
+  <g stroke="#cbd5e1" stroke-dasharray="6 5"><path d="M105 150V970 M320 150V970 M535 150V970 M750 150V970 M980 150V970"/></g>
+  <g fill="none" stroke="#475569" stroke-width="2" marker-end="url(#arrow)">
+    <path d="M105 205H320"/>
+    <path d="M320 265H535"/>
+    <path d="M320 325H535"/>
+    <path d="M320 390H750"/>
+    <path d="M750 450H320"/>
+    <path d="M320 510H535"/>
+    <path d="M320 575H980"/>
+    <path d="M980 635H320"/>
+    <path d="M320 695H535"/>
+    <path d="M320 760H750"/>
+    <path d="M750 820H320"/>
+    <path d="M320 880H535"/>
+    <path d="M320 945H105"/>
+  </g>
+  <g font-family="Segoe UI, Microsoft YaHei, sans-serif" fill="#0f172a" font-size="13" text-anchor="middle">
+    <text x="212" y="193">followup(userMessage)</text>
+    <text x="428" y="237">append('turn/start')</text>
+    <text x="428" y="253">claim pending input</text>
+    <text x="428" y="297">append admitted messages</text>
+    <text x="428" y="313">deriveMessages()</text>
+    <text x="535" y="378">step 1: stream(request) [messages + tools + config]</text>
+    <text x="535" y="438">stream chunks: tool-call read(args)</text>
+    <text x="428" y="498">append('assistant/message')</text>
+    <text x="650" y="563">executeToolCalls() → policy / guards → read → ctx.fs</text>
+    <text x="650" y="623">ToolExecutionResult: content / isError</text>
+    <text x="428" y="667">append('tool/result')</text>
+    <text x="428" y="683">link callId + call event seq</text>
+    <text x="535" y="748">step 2: stream(request) [updated history]</text>
+    <text x="535" y="808">stream chunks: final text, no tool-call</text>
+    <text x="428" y="836">append('assistant/message')</text>
+    <text x="428" y="852">append('step/end')</text>
+    <text x="428" y="868">append('turn/end')</text>
+    <text x="212" y="933">whenIdle() resolves</text>
+    <text x="550" y="1000" font-size="16">Session 追加记录不等于每次同步写盘；持久化取决于后端和同步边界。</text>
+    <text x="550" y="1028" font-size="15">入口还会 flush、汇总文本并选择退出码；completed 不等于业务验收通过。</text>
+    <text x="550" y="1055" font-size="14">固定版本静态源码教学图；prompt 组装、审批等细节已折叠，不表示所有 profile 都启用这些能力。</text>
+  </g>
+</svg>

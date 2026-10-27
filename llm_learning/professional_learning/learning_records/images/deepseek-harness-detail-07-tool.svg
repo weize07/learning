@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1640" height="1522" viewBox="0 0 1640 1522" role="img" aria-labelledby="title desc">
+<title id="title">7. 执行：模型建议必须经过程序边界</title>
+<desc id="desc">固定提交 571902028a75c64c1d767f4ae5fd099485f0ddf0 的静态主路径教学图。实线为调用或通知，虚线为返回或数据流；条件分支按标签和正文解释，不是实际运行轨迹。</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0L0 8L8 4Z" fill="#475569"/></marker></defs>
+<style>.message{font-family:Consolas,monospace;font-size:13px;fill:#0f172a}.arrow{fill:none;stroke:#475569;stroke-width:2;marker-end:url(#arrow)}</style>
+<rect width="1640" height="1522" fill="#fff"/>
+<g font-family="Segoe UI, Microsoft YaHei, sans-serif" fill="#0f172a">
+<text x="820" y="35" text-anchor="middle" font-size="23" font-weight="bold">7. 执行：模型建议必须经过程序边界</text>
+<text x="820" y="59" text-anchor="middle" font-size="14">先看职责边界，再按英文标签对照源码；折返箭头为对象内部动作</text>
+<rect x="15" y="76" width="210" height="64" rx="8" fill="#dbeafe" stroke="#64748b"/><text x="120" y="103" font-size="17" text-anchor="middle">Scheduler</text><text x="120" y="128" font-size="14" text-anchor="middle">调用调度</text>
+<rect x="275" y="76" width="210" height="64" rx="8" fill="#f1f5f9" stroke="#64748b"/><text x="380" y="103" font-size="17" text-anchor="middle">Tools service</text><text x="380" y="128" font-size="14" text-anchor="middle">执行管线</text>
+<rect x="535" y="76" width="210" height="64" rx="8" fill="#ede9fe" stroke="#64748b"/><text x="640" y="103" font-size="17" text-anchor="middle">Policy / approval</text><text x="640" y="128" font-size="14" text-anchor="middle">策略与授权</text>
+<rect x="795" y="76" width="210" height="64" rx="8" fill="#dcfce7" stroke="#64748b"/><text x="900" y="103" font-size="17" text-anchor="middle">Read tool</text><text x="900" y="128" font-size="14" text-anchor="middle">领域参数与有界读取</text>
+<rect x="1055" y="76" width="210" height="64" rx="8" fill="#fef3c7" stroke="#64748b"/><text x="1160" y="103" font-size="17" text-anchor="middle">File backend</text><text x="1160" y="128" font-size="14" text-anchor="middle">实际文件能力</text>
+<rect x="1315" y="76" width="210" height="64" rx="8" fill="#f1f5f9" stroke="#64748b"/><text x="1420" y="103" font-size="17" text-anchor="middle">Session</text><text x="1420" y="128" font-size="14" text-anchor="middle">调用与结果记录</text>
+<path d="M120 140V1420" stroke="#cbd5e1" stroke-dasharray="6 5"/>
+<path d="M380 140V1420" stroke="#cbd5e1" stroke-dasharray="6 5"/>
+<path d="M640 140V1420" stroke="#cbd5e1" stroke-dasharray="6 5"/>
+<path d="M900 140V1420" stroke="#cbd5e1" stroke-dasharray="6 5"/>
+<path d="M1160 140V1420" stroke="#cbd5e1" stroke-dasharray="6 5"/>
+<path d="M1420 140V1420" stroke="#cbd5e1" stroke-dasharray="6 5"/>
+<text class="message" x="770" y="178" text-anchor="middle">append('tool/call') -&gt; callSeq</text>
+<path class="arrow" d="M120 190H1420"/>
+<text class="message" x="250" y="232" text-anchor="middle">scheduler.prepare(exec)</text>
+<path class="arrow" d="M120 244H380"/>
+<text class="message" x="510" y="286" text-anchor="middle">tools/pre-execute(exec)</text>
+<path class="arrow" d="M380 298H640"/>
+<text class="message" x="510" y="340" text-anchor="middle">allow / ask / deny / cancel</text>
+<path class="arrow" d="M640 352H380" stroke-dasharray="6 4"/>
+<text class="message" x="510" y="394" text-anchor="middle">one-shot approval [if ask]</text>
+<path class="arrow" d="M380 406H640"/>
+<text class="message" x="510" y="448" text-anchor="middle">approval decision [if asked]</text>
+<path class="arrow" d="M640 460H380" stroke-dasharray="6 4"/>
+<text class="message" x="393" y="502" text-anchor="start">guards(exec) [must allow]</text>
+<path class="arrow" d="M380 514h80v16h-80"/>
+<text class="message" x="250" y="572" text-anchor="middle">{ kind: 'dispatch', exec }</text>
+<text class="message" x="250" y="590" text-anchor="middle">[allow path]</text>
+<path class="arrow" d="M380 602H120" stroke-dasharray="6 4"/>
+<text class="message" x="250" y="644" text-anchor="middle">scheduler.dispatch(exec)</text>
+<path class="arrow" d="M120 656H380"/>
+<text class="message" x="640" y="698" text-anchor="middle">tool.execute(arguments, exec) [through tools/execute]</text>
+<path class="arrow" d="M380 710H900"/>
+<text class="message" x="913" y="752" text-anchor="start">parseReadArgs(args)</text>
+<path class="arrow" d="M900 764h80v16h-80"/>
+<text class="message" x="1030" y="822" text-anchor="middle">resolve target; readText() /</text>
+<text class="message" x="1030" y="840" text-anchor="middle">streamText()</text>
+<path class="arrow" d="M900 852H1160"/>
+<text class="message" x="1030" y="894" text-anchor="middle">text / text chunks</text>
+<path class="arrow" d="M1160 906H900" stroke-dasharray="6 4"/>
+<text class="message" x="913" y="948" text-anchor="start">build bounded read window</text>
+<path class="arrow" d="M900 960h80v16h-80"/>
+<text class="message" x="640" y="1018" text-anchor="middle">structured read value</text>
+<path class="arrow" d="M900 1030H380" stroke-dasharray="6 4"/>
+<text class="message" x="250" y="1072" text-anchor="middle">dispatch outcome</text>
+<path class="arrow" d="M380 1084H120" stroke-dasharray="6 4"/>
+<text class="message" x="250" y="1126" text-anchor="middle">scheduler.finalize(exec,</text>
+<text class="message" x="250" y="1144" text-anchor="middle">result)</text>
+<path class="arrow" d="M120 1156H380"/>
+<text class="message" x="510" y="1198" text-anchor="middle">tools/post-execute [normal</text>
+<text class="message" x="510" y="1216" text-anchor="middle">result]</text>
+<path class="arrow" d="M380 1228H640"/>
+<text class="message" x="510" y="1270" text-anchor="middle">accepted / adjusted result</text>
+<path class="arrow" d="M640 1282H380" stroke-dasharray="6 4"/>
+<text class="message" x="250" y="1324" text-anchor="middle">ToolExecutionResult</text>
+<path class="arrow" d="M380 1336H120" stroke-dasharray="6 4"/>
+<text class="message" x="770" y="1378" text-anchor="middle">append('tool/result', ..., sourceEventSeqs: [callSeq])</text>
+<path class="arrow" d="M120 1390H1420"/>
+<text x="820" y="1457" text-anchor="middle" font-size="14">图展开单个调用的正常 allow 路径；deny / cancel 不会继续调用 read 工具体。</text>
+<text x="820" y="1482" text-anchor="middle" font-size="14">阶段接口的内部符号访问、返回值校验与渲染已折叠；callId 不是业务幂等键。</text>
+</g>
+</svg>

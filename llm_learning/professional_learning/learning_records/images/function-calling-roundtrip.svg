@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1060" height="610" viewBox="0 0 1060 610" role="img" aria-labelledby="title desc">
+  <title id="title">一次自定义工具调用的往返</title>
+  <desc id="desc">应用发送任务和工具定义，模型提出带调用编号的调用；应用检查参数和权限后访问订单服务，收到结果后通过同一调用编号回填模型，模型再回答或继续提出调用。发给模型的工具定义不等于已执行的程序。</desc>
+  <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0L0 8L8 4Z" fill="#475569"/></marker></defs>
+  <rect width="1060" height="610" fill="white"/>
+  <g font-family="Segoe UI, Microsoft YaHei, sans-serif" text-anchor="middle" fill="#0f172a">
+    <text x="530" y="35" font-size="23" font-weight="bold">Function Calling：提出调用 ≠ 执行调用</text>
+    <rect x="45" y="62" width="230" height="60" rx="10" fill="#dbeafe" stroke="#2563eb"/>
+    <text x="160" y="88" font-size="18">应用 / Runtime</text><text x="160" y="109" font-size="14">含工具执行代码</text>
+    <rect x="415" y="62" width="230" height="60" rx="10" fill="#ede9fe" stroke="#7c3aed"/>
+    <text x="530" y="99" font-size="18">模型 API</text>
+    <rect x="785" y="62" width="230" height="60" rx="10" fill="#dcfce7" stroke="#16a34a"/>
+    <text x="900" y="99" font-size="18">订单服务 / 数据库</text>
+    <text x="345" y="158" font-size="15">① 问题 + 工具说明与 schema</text>
+    <text x="345" y="220" font-size="15">② 调用建议：名称、参数、call ID</text>
+    <rect x="32" y="248" width="255" height="54" rx="8" fill="#fff7ed" stroke="#ea580c"/>
+    <text x="160" y="270" font-size="15">③ 校验参数、权限与预算</text><text x="160" y="292" font-size="14">未获授权则不执行</text>
+    <text x="535" y="332" font-size="15">④ 由应用执行获准的订单查询</text>
+    <text x="535" y="394" font-size="15">⑤ 服务返回真实结果或错误</text>
+    <text x="345" y="456" font-size="15">⑥ 关联同一 call ID 回填结果</text>
+    <text x="345" y="518" font-size="15">⑦ 回答 / 澄清 / 下一次调用</text>
+    <text x="530" y="577" font-size="15">结果必须校验并记录；每一步都可能失败，不能将缺失或超时当作正常业务结论。</text>
+  </g>
+  <g stroke="#cbd5e1" stroke-dasharray="6 5" stroke-width="2"><path d="M160 122V548 M530 122V548 M900 122V548"/></g>
+  <g fill="none" stroke="#475569" stroke-width="2.5" marker-end="url(#arrow)">
+    <path d="M160 175H530 M530 237H160 M160 349H900 M900 411H160 M160 473H530 M530 535H160"/>
+  </g>
+</svg>

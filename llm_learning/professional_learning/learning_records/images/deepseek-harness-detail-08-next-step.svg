@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="860" height="892" viewBox="0 0 860 892" role="img" aria-labelledby="title desc">
+<title id="title">8. 续接：把工具证据放进新请求</title>
+<desc id="desc">固定提交 571902028a75c64c1d767f4ae5fd099485f0ddf0 的静态主路径教学图。实线为调用或通知，虚线为返回或数据流；条件分支按标签和正文解释，不是实际运行轨迹。</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0L0 8L8 4Z" fill="#475569"/></marker></defs>
+<style>.message{font-family:Consolas,monospace;font-size:13px;fill:#0f172a}.arrow{fill:none;stroke:#475569;stroke-width:2;marker-end:url(#arrow)}</style>
+<rect width="860" height="892" fill="#fff"/>
+<g font-family="Segoe UI, Microsoft YaHei, sans-serif" fill="#0f172a">
+<text x="430" y="35" text-anchor="middle" font-size="23" font-weight="bold">8. 续接：把工具证据放进新请求</text>
+<text x="430" y="59" text-anchor="middle" font-size="14">先看职责边界，再按英文标签对照源码；折返箭头为对象内部动作</text>
+<rect x="15" y="76" width="210" height="64" rx="8" fill="#dbeafe" stroke="#64748b"/><text x="120" y="103" font-size="17" text-anchor="middle">Driver</text><text x="120" y="128" font-size="14" text-anchor="middle">控制循环</text>
+<rect x="275" y="76" width="210" height="64" rx="8" fill="#f1f5f9" stroke="#64748b"/><text x="380" y="103" font-size="17" text-anchor="middle">Session</text><text x="380" y="128" font-size="14" text-anchor="middle">可见历史</text>
+<rect x="535" y="76" width="210" height="64" rx="8" fill="#ede9fe" stroke="#64748b"/><text x="640" y="103" font-size="17" text-anchor="middle">LLM service</text><text x="640" y="128" font-size="14" text-anchor="middle">模型生成</text>
+<path d="M120 140V790" stroke="#cbd5e1" stroke-dasharray="6 5"/>
+<path d="M380 140V790" stroke="#cbd5e1" stroke-dasharray="6 5"/>
+<path d="M640 140V790" stroke="#cbd5e1" stroke-dasharray="6 5"/>
+<text class="message" x="133" y="178" text-anchor="start">step 1 returns null</text>
+<text class="message" x="133" y="196" text-anchor="start">[ordinary tool result]</text>
+<path class="arrow" d="M120 208h80v16h-80"/>
+<text class="message" x="250" y="266" text-anchor="middle">append('step/end')</text>
+<path class="arrow" d="M120 278H380"/>
+<text class="message" x="133" y="320" text-anchor="start">next preStep() -&gt; step 2</text>
+<text class="message" x="133" y="338" text-anchor="start">[see section 5]</text>
+<path class="arrow" d="M120 350h80v16h-80"/>
+<text class="message" x="250" y="408" text-anchor="middle">deriveMessages()</text>
+<path class="arrow" d="M120 420H380"/>
+<text class="message" x="250" y="462" text-anchor="middle">M0 + M1 + M2(tool-call) +</text>
+<text class="message" x="250" y="480" text-anchor="middle">M3(tool result)</text>
+<path class="arrow" d="M380 492H120" stroke-dasharray="6 4"/>
+<text class="message" x="380" y="534" text-anchor="middle">stream(request) [updated messages + tools + config]</text>
+<path class="arrow" d="M120 546H640"/>
+<text class="message" x="380" y="588" text-anchor="middle">final text chunks; no tool-call</text>
+<path class="arrow" d="M640 600H120" stroke-dasharray="6 4"/>
+<text class="message" x="250" y="642" text-anchor="middle">append('assistant/message')</text>
+<text class="message" x="250" y="660" text-anchor="middle">[M4]</text>
+<path class="arrow" d="M120 672H380"/>
+<text class="message" x="133" y="714" text-anchor="start">step 2 returns { kind:</text>
+<text class="message" x="133" y="732" text-anchor="start">'completed' }</text>
+<path class="arrow" d="M120 744h80v16h-80"/>
+<text x="430" y="827" text-anchor="middle" font-size="14">M0～M4 对应正文第 2 节的教学消息；实际请求还可能包含运行上下文。</text>
+<text x="430" y="852" text-anchor="middle" font-size="14">工具只返回证据；是否充分以及最终怎样解释，仍需要模型和验收判断。</text>
+</g>
+</svg>

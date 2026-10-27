@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1380" height="1288" viewBox="0 0 1380 1288" role="img" aria-labelledby="title desc">
+<title id="title">请求失败：同一 step 内更换 attempt，不重跑整个任务</title>
+<desc id="desc">固定版本 571902028a75c64c1d767f4ae5fd099485f0ddf0 的静态分支教学图，不是实际运行日志。实线表示调用或通知，虚线表示返回或完成，折返为内部动作。条件按正文解释。</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0L0 8L8 4Z" fill="#475569"/></marker></defs>
+<style>.message{font-family:Consolas,monospace;font-size:13px;fill:#0f172a}.arrow{fill:none;stroke:#475569;stroke-width:2;marker-end:url(#arrow)}</style>
+<rect width="1380" height="1288" fill="#fff"/>
+<g font-family="Segoe UI, Microsoft YaHei, sans-serif" fill="#0f172a">
+<text x="690" y="35" text-anchor="middle" font-size="23" font-weight="bold">请求失败：同一 step 内更换 attempt，不重跑整个任务</text>
+<text x="690" y="59" text-anchor="middle" font-size="14">先根据状态选择分支，再按英文标签对照源码；图中折叠部分包装与记录细节</text>
+<rect x="15" y="76" width="210" height="64" rx="8" fill="#dbeafe" stroke="#64748b"/>
+<text x="120" y="103" font-size="17" text-anchor="middle">Driver</text>
+<text x="120" y="128" font-size="14" text-anchor="middle">当前 turn / step</text>
+<rect x="275" y="76" width="210" height="64" rx="8" fill="#ede9fe" stroke="#64748b"/>
+<text x="380" y="103" font-size="17" text-anchor="middle">LLM / adapter</text>
+<text x="380" y="128" font-size="14" text-anchor="middle">模型请求</text>
+<rect x="535" y="76" width="210" height="64" rx="8" fill="#dcfce7" stroke="#64748b"/>
+<text x="640" y="103" font-size="17" text-anchor="middle">StreamAttempt A/B</text>
+<text x="640" y="128" font-size="14" text-anchor="middle">每次尝试独立</text>
+<rect x="795" y="76" width="210" height="64" rx="8" fill="#fef3c7" stroke="#64748b"/>
+<text x="900" y="103" font-size="17" text-anchor="middle">Retry listener</text>
+<text x="900" y="128" font-size="14" text-anchor="middle">策略与退避</text>
+<rect x="1055" y="76" width="210" height="64" rx="8" fill="#f1f5f9" stroke="#64748b"/>
+<text x="1160" y="103" font-size="17" text-anchor="middle">Session</text>
+<text x="1160" y="128" font-size="14" text-anchor="middle">事实记录</text>
+<path d="M120 140V1186" stroke="#cbd5e1" stroke-dasharray="6 5"/>
+<path d="M380 140V1186" stroke="#cbd5e1" stroke-dasharray="6 5"/>
+<path d="M640 140V1186" stroke="#cbd5e1" stroke-dasharray="6 5"/>
+<path d="M900 140V1186" stroke="#cbd5e1" stroke-dasharray="6 5"/>
+<path d="M1160 140V1186" stroke="#cbd5e1" stroke-dasharray="6 5"/>
+<text class="message" x="250" y="178" text-anchor="middle">stream(request) [attempt A]</text>
+<path class="arrow" d="M120 190H380"/>
+<text class="message" x="380" y="232" text-anchor="middle">live.start() [A]</text>
+<path class="arrow" d="M120 244H640"/>
+<text class="message" x="250" y="286" text-anchor="middle">finish: error, code: TIMEOUT</text>
+<path class="arrow" d="M380 298H120" stroke-dasharray="6 4"/>
+<text class="message" x="380" y="340" text-anchor="middle">live.push(chunk) [incl. terminal finish]</text>
+<path class="arrow" d="M120 352H640"/>
+<text class="message" x="380" y="394" text-anchor="middle">settle('assistant/attempt', appendCallback)</text>
+<path class="arrow" d="M120 406H640"/>
+<text class="message" x="900" y="448" text-anchor="middle">append('assistant/attempt') [non-surface]</text>
+<path class="arrow" d="M640 460H1160"/>
+<text class="message" x="510" y="502" text-anchor="middle">agent/request-error(failure, policy, signal)</text>
+<path class="arrow" d="M120 514H900"/>
+<text class="message" x="913" y="556" text-anchor="start">normal: eligible code +</text>
+<text class="message" x="913" y="574" text-anchor="start">retries remaining</text>
+<path class="arrow" d="M900 586h80v16h-80"/>
+<text class="message" x="1030" y="644" text-anchor="middle">append('llm/retry')</text>
+<path class="arrow" d="M900 656H1160"/>
+<text class="message" x="913" y="698" text-anchor="start">await cancellableDelay(dela</text>
+<text class="message" x="913" y="716" text-anchor="start">yMs, signal)</text>
+<path class="arrow" d="M900 728h80v16h-80"/>
+<text class="message" x="1030" y="786" text-anchor="middle">append('llm/retry-started')</text>
+<path class="arrow" d="M900 798H1160"/>
+<text class="message" x="510" y="840" text-anchor="middle">{ kind: 'retry' }</text>
+<path class="arrow" d="M900 852H120" stroke-dasharray="6 4"/>
+<text class="message" x="133" y="894" text-anchor="start">same step; rebuild request;</text>
+<text class="message" x="133" y="912" text-anchor="start">new attempt B</text>
+<path class="arrow" d="M120 924h80v16h-80"/>
+<text class="message" x="250" y="982" text-anchor="middle">stream(request) [attempt B]</text>
+<path class="arrow" d="M120 994H380"/>
+<text class="message" x="250" y="1036" text-anchor="middle">successful chunks + finish</text>
+<path class="arrow" d="M380 1048H120" stroke-dasharray="6 4"/>
+<text class="message" x="380" y="1090" text-anchor="middle">push chunks; settle successful message [B]</text>
+<path class="arrow" d="M120 1102H640"/>
+<text class="message" x="900" y="1144" text-anchor="middle">append('assistant/message')</text>
+<path class="arrow" d="M640 1156H1160"/>
+<text x="690" y="1223" text-anchor="middle" font-size="14">要求重试插件与适用策略；图只展开一次被允许且等待完成的 normal 重试。</text>
+<text x="690" y="1248" text-anchor="middle" font-size="14">尝试 A 的失败片段不进入普通 messages；本图未执行 A 中的任何工具建议。</text>
+</g>
+</svg>

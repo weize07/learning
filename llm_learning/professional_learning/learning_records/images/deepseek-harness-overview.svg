@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="650" viewBox="0 0 1100 650" role="img" aria-labelledby="title desc">
+  <title id="title">DeepSeek Harness 项目全貌：装配与任务执行</title>
+  <desc id="desc">启动时选择 profile，经 bundle 与配置装配插件；Cordis 管理插件依赖、服务和生命周期。用户通过入口提交任务或控制请求，运行中的状态、输出和最终回复经入口返回调用方；双向箭头表示逻辑交互，不表示 loop 直接承担传输。Agent loop 结合会话记录调用模型服务和工具服务。模型提供决策，工具访问环境；会话按配置接入持久存储。模块表示职责，不表示所有功能默认启用。</desc>
+  <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0L0 8L8 4Z" fill="#475569"/></marker></defs>
+  <rect width="1100" height="650" fill="#fff"/>
+  <g font-family="Segoe UI, Microsoft YaHei, sans-serif" fill="#0f172a" text-anchor="middle">
+    <text x="550" y="34" font-size="24" font-weight="bold">先装配可运行的程序，再让它处理任务</text>
+    <rect x="30" y="60" width="1040" height="95" rx="10" fill="#eff6ff" stroke="#2563eb"/>
+    <text x="550" y="90" font-size="18">启动装配：profile（运行配置）→ bundle（能力组合）→ plugins（功能模块）</text>
+    <text x="550" y="123" font-size="16">Cordis 管理插件依赖、共享服务与加载 / 卸载；配置决定实际启用什么</text>
+    <text x="550" y="181" font-size="15">下方是这些插件运行后提供的职责，不是 plugins 之外的另一套系统</text>
+    <rect x="30" y="215" width="175" height="85" rx="10" fill="#f1f5f9" stroke="#64748b"/>
+    <text x="117" y="247" font-size="18">用户 / 调用方</text><text x="117" y="277" font-size="15">Web / SDK 等入口</text>
+    <text x="245" y="236" font-size="11">任务 / 控制</text>
+    <text x="245" y="299" font-size="11">状态 / 回复</text>
+    <rect x="285" y="200" width="350" height="110" rx="10" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
+    <text x="460" y="231" font-size="19">Agent loop（驱动循环）</text>
+    <text x="460" y="263" font-size="16">构造请求 → 处理响应 → 执行工具</text><text x="460" y="290" font-size="15">需要时继续下一步，而非无条件重复</text>
+    <rect x="765" y="200" width="305" height="110" rx="10" fill="#ede9fe" stroke="#7c3aed"/>
+    <text x="917" y="232" font-size="18">LLM 服务与适配器</text><text x="917" y="265" font-size="16">连接所配置的模型</text><text x="917" y="291" font-size="14">模型不是这个仓库的主体</text>
+    <rect x="285" y="380" width="350" height="100" rx="10" fill="#dcfce7" stroke="#16a34a"/>
+    <text x="460" y="412" font-size="18">工具服务与执行策略</text><text x="460" y="443" font-size="16">注册、调用、结果 / 错误</text><text x="460" y="468" font-size="14">后端限制写入；审批按策略执行</text>
+    <rect x="765" y="380" width="305" height="100" rx="10" fill="#fef3c7" stroke="#d97706"/>
+    <text x="917" y="415" font-size="18">工作区 / 外部环境</text><text x="917" y="450" font-size="16">文件、命令、服务及真实结果</text>
+    <rect x="30" y="530" width="1040" height="75" rx="10" fill="#f1f5f9" stroke="#64748b"/>
+    <text x="550" y="559" font-size="18">Session：记录交互与事件 → 推导当前模型历史</text><text x="550" y="588" font-size="15">基础 session 在内存；接入持久化后端才讨论跨进程保存与恢复保证</text>
+    <text x="550" y="632" font-size="14">逻辑职责图，非逐函数调用图；返回经入口层传输；loop、工具与模型适配等也由插件提供。</text>
+  </g>
+  <g fill="none" stroke="#475569" stroke-width="2.3" marker-end="url(#arrow)">
+    <path d="M205 245H285 M285 280H205"/>
+    <path d="M635 233H765 M765 285H635"/>
+    <path d="M430 310V380 M490 380V310"/>
+    <path d="M635 411H765 M765 457H635"/>
+    <path d="M320 310H240V530 M570 480V530"/>
+  </g>
+</svg>

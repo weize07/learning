@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="510" viewBox="0 0 1080 510" role="img" aria-labelledby="title desc">
+  <title id="title">Agent 上下文：可访问、已保存与本轮可见不是一回事</title>
+  <desc id="desc">文件、外部系统、历史与任务状态作为不同来源，由受权限和预算约束的上下文构造器选择内容。只有真正序列化进本轮请求的规则、状态、片段与工具定义是模型本轮的输入。模型提出下一步检索，经工具执行后取得新观察。存储定位符不等于已读取全文。</desc>
+  <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0L0 8L8 4Z" fill="#475569"/></marker></defs>
+  <rect width="1080" height="510" fill="#fff"/>
+  <g font-family="Segoe UI, Microsoft YaHei, sans-serif" fill="#0f172a" text-anchor="middle">
+    <text x="540" y="33" font-size="23" font-weight="bold">先选信息，再调用模型；缺信息时再受控读取</text>
+    <rect x="25" y="66" width="255" height="270" rx="10" fill="#f1f5f9" stroke="#64748b"/>
+    <text x="152" y="98" font-size="18">可访问的信息来源</text>
+    <text x="152" y="139" font-size="16">授权文件 / 文档 / API</text>
+    <text x="152" y="180" font-size="16">完整工具结果与历史记录</text>
+    <text x="152" y="221" font-size="16">任务状态、计划与已验证事实</text>
+    <text x="152" y="262" font-size="16">工具描述与 skills 资料</text>
+    <text x="152" y="307" font-size="14">存在或已保存，不代表已入上下文</text>
+    <rect x="365" y="126" width="285" height="150" rx="10" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
+    <text x="507" y="160" font-size="19">上下文构造器 / Runtime</text>
+    <text x="507" y="196" font-size="16">权限 · 相关性 · 时效 · 预算</text>
+    <text x="507" y="231" font-size="15">选择 / 读取 / 摘要 / 原文回查</text>
+    <rect x="735" y="66" width="320" height="270" rx="10" fill="#ede9fe" stroke="#7c3aed"/>
+    <text x="895" y="98" font-size="18">本轮实际发给模型的请求</text>
+    <text x="895" y="139" font-size="16">应用规则与用户限制</text>
+    <text x="895" y="180" font-size="16">当前问题、必要状态与历史</text>
+    <text x="895" y="221" font-size="16">选定片段 / 工具结果 / 定位符</text>
+    <text x="895" y="262" font-size="16">本轮可用工具定义</text>
+    <text x="895" y="307" font-size="14">定位符是线索，不是对应全文</text>
+    <rect x="365" y="383" width="690" height="62" rx="10" fill="#dcfce7" stroke="#16a34a"/>
+    <text x="710" y="409" font-size="17">模型提出需要的信息 → 校验并调用搜索 / 读取 / 统计工具</text>
+    <text x="710" y="433" font-size="14">新结果更新状态；下一轮重新选择必要内容，而非无条件追加一切</text>
+    <text x="540" y="482" font-size="15">宿主程序获得文件访问权，不等于模型每次都看见全部文件；落盘也不必然减少请求 token。</text>
+  </g>
+  <g fill="none" stroke="#475569" stroke-width="2.3" marker-end="url(#arrow)">
+    <path d="M280 201H365 M650 201H735"/>
+    <path d="M895 336V383"/>
+    <path d="M365 414H310V250H280"/>
+  </g>
+</svg>

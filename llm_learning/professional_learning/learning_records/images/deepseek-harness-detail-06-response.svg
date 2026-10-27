@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1380" height="1092" viewBox="0 0 1380 1092" role="img" aria-labelledby="title desc">
+<title id="title">6. 响应：实时展示与完整消息分开</title>
+<desc id="desc">固定提交 571902028a75c64c1d767f4ae5fd099485f0ddf0 的静态主路径教学图。实线为调用或通知，虚线为返回或数据流；条件分支按标签和正文解释，不是实际运行轨迹。</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0L0 8L8 4Z" fill="#475569"/></marker></defs>
+<style>.message{font-family:Consolas,monospace;font-size:13px;fill:#0f172a}.arrow{fill:none;stroke:#475569;stroke-width:2;marker-end:url(#arrow)}</style>
+<rect width="1380" height="1092" fill="#fff"/>
+<g font-family="Segoe UI, Microsoft YaHei, sans-serif" fill="#0f172a">
+<text x="690" y="35" text-anchor="middle" font-size="23" font-weight="bold">6. 响应：实时展示与完整消息分开</text>
+<text x="690" y="59" text-anchor="middle" font-size="14">先看职责边界，再按英文标签对照源码；折返箭头为对象内部动作</text>
+<rect x="15" y="76" width="210" height="64" rx="8" fill="#dbeafe" stroke="#64748b"/><text x="120" y="103" font-size="17" text-anchor="middle">Driver</text><text x="120" y="128" font-size="14" text-anchor="middle">模型调用与后续调度</text>
+<rect x="275" y="76" width="210" height="64" rx="8" fill="#f1f5f9" stroke="#64748b"/><text x="380" y="103" font-size="17" text-anchor="middle">Adapter / model</text><text x="380" y="128" font-size="14" text-anchor="middle">流式推理</text>
+<rect x="535" y="76" width="210" height="64" rx="8" fill="#ede9fe" stroke="#64748b"/><text x="640" y="103" font-size="17" text-anchor="middle">StreamAttempt</text><text x="640" y="128" font-size="14" text-anchor="middle">汇集与定型</text>
+<rect x="795" y="76" width="210" height="64" rx="8" fill="#dcfce7" stroke="#64748b"/><text x="900" y="103" font-size="17" text-anchor="middle">Session</text><text x="900" y="128" font-size="14" text-anchor="middle">最终响应记录</text>
+<rect x="1055" y="76" width="210" height="64" rx="8" fill="#fef3c7" stroke="#64748b"/><text x="1160" y="103" font-size="17" text-anchor="middle">Frame consumers</text><text x="1160" y="128" font-size="14" text-anchor="middle">状态与显示观察者</text>
+<path d="M120 140V990" stroke="#cbd5e1" stroke-dasharray="6 5"/>
+<path d="M380 140V990" stroke="#cbd5e1" stroke-dasharray="6 5"/>
+<path d="M640 140V990" stroke="#cbd5e1" stroke-dasharray="6 5"/>
+<path d="M900 140V990" stroke="#cbd5e1" stroke-dasharray="6 5"/>
+<path d="M1160 140V990" stroke="#cbd5e1" stroke-dasharray="6 5"/>
+<text class="message" x="250" y="178" text-anchor="middle">preparedCall.stream(request)</text>
+<path class="arrow" d="M120 190H380"/>
+<text class="message" x="380" y="232" text-anchor="middle">live.start()</text>
+<path class="arrow" d="M120 244H640"/>
+<text class="message" x="900" y="286" text-anchor="middle">agent/assistant-stream: start</text>
+<path class="arrow" d="M640 298H1160"/>
+<text class="message" x="250" y="340" text-anchor="middle">chunk [repeat for each chunk]</text>
+<path class="arrow" d="M380 352H120" stroke-dasharray="6 4"/>
+<text class="message" x="380" y="394" text-anchor="middle">live.push(chunk)</text>
+<path class="arrow" d="M120 406H640"/>
+<text class="message" x="653" y="448" text-anchor="start">accumulate chunk; assemble</text>
+<text class="message" x="653" y="466" text-anchor="start">blocks</text>
+<path class="arrow" d="M640 478h80v16h-80"/>
+<text class="message" x="900" y="536" text-anchor="middle">agent/assistant-stream: chunk</text>
+<path class="arrow" d="M640 548H1160"/>
+<text class="message" x="380" y="590" text-anchor="middle">read live.finish; live.blocks()</text>
+<path class="arrow" d="M120 602H640"/>
+<text class="message" x="380" y="644" text-anchor="middle">finish + ContentBlock[]</text>
+<path class="arrow" d="M640 656H120" stroke-dasharray="6 4"/>
+<text class="message" x="380" y="698" text-anchor="middle">settle('assistant/message', appendCallback)</text>
+<path class="arrow" d="M120 710H640"/>
+<text class="message" x="770" y="752" text-anchor="middle">append('assistant/message')</text>
+<path class="arrow" d="M640 764H900"/>
+<text class="message" x="770" y="806" text-anchor="middle">committed event seq</text>
+<path class="arrow" d="M900 818H640" stroke-dasharray="6 4"/>
+<text class="message" x="900" y="860" text-anchor="middle">agent/assistant-stream: end(committed)</text>
+<path class="arrow" d="M640 872H1160"/>
+<text class="message" x="133" y="914" text-anchor="start">filter content blocks by</text>
+<text class="message" x="133" y="932" text-anchor="start">type === 'tool-call'</text>
+<path class="arrow" d="M120 944h80v16h-80"/>
+<text x="690" y="1027" text-anchor="middle" font-size="14">正常响应路径；chunk 对应实时帧，不表示每个 chunk 都独立同步写盘。</text>
+<text x="690" y="1052" text-anchor="middle" font-size="14">图中重复区只画一个 chunk；完整调用建议形成后才进入第 7 节执行。</text>
+</g>
+</svg>

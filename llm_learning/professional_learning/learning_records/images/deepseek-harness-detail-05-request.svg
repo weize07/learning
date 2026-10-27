@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="1214" viewBox="0 0 1120 1214" role="img" aria-labelledby="title desc">
+<title id="title">5. 请求：先确定本轮快照，再交给模型</title>
+<desc id="desc">固定提交 571902028a75c64c1d767f4ae5fd099485f0ddf0 的静态主路径教学图。实线为调用或通知，虚线为返回或数据流；条件分支按标签和正文解释，不是实际运行轨迹。</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0L0 8L8 4Z" fill="#475569"/></marker></defs>
+<style>.message{font-family:Consolas,monospace;font-size:13px;fill:#0f172a}.arrow{fill:none;stroke:#475569;stroke-width:2;marker-end:url(#arrow)}</style>
+<rect width="1120" height="1214" fill="#fff"/>
+<g font-family="Segoe UI, Microsoft YaHei, sans-serif" fill="#0f172a">
+<text x="560" y="35" text-anchor="middle" font-size="23" font-weight="bold">5. 请求：先确定本轮快照，再交给模型</text>
+<text x="560" y="59" text-anchor="middle" font-size="14">先看职责边界，再按英文标签对照源码；折返箭头为对象内部动作</text>
+<rect x="15" y="76" width="210" height="64" rx="8" fill="#dbeafe" stroke="#64748b"/><text x="120" y="103" font-size="17" text-anchor="middle">Driver</text><text x="120" y="128" font-size="14" text-anchor="middle">step 控制</text>
+<rect x="275" y="76" width="210" height="64" rx="8" fill="#f1f5f9" stroke="#64748b"/><text x="380" y="103" font-size="17" text-anchor="middle">SystemPrompt</text><text x="380" y="128" font-size="14" text-anchor="middle">提示与工具组装</text>
+<rect x="535" y="76" width="210" height="64" rx="8" fill="#ede9fe" stroke="#64748b"/><text x="640" y="103" font-size="17" text-anchor="middle">LLM service</text><text x="640" y="128" font-size="14" text-anchor="middle">路由与适配器</text>
+<rect x="795" y="76" width="210" height="64" rx="8" fill="#dcfce7" stroke="#64748b"/><text x="900" y="103" font-size="17" text-anchor="middle">Session</text><text x="900" y="128" font-size="14" text-anchor="middle">事实与历史视图</text>
+<path d="M120 140V1112" stroke="#cbd5e1" stroke-dasharray="6 5"/>
+<path d="M380 140V1112" stroke="#cbd5e1" stroke-dasharray="6 5"/>
+<path d="M640 140V1112" stroke="#cbd5e1" stroke-dasharray="6 5"/>
+<path d="M900 140V1112" stroke="#cbd5e1" stroke-dasharray="6 5"/>
+<text class="message" x="250" y="178" text-anchor="middle">assemble(context)</text>
+<path class="arrow" d="M120 190H380"/>
+<text class="message" x="250" y="232" text-anchor="middle">assembly { prompt sections,</text>
+<text class="message" x="250" y="250" text-anchor="middle">tools }</text>
+<path class="arrow" d="M380 262H120" stroke-dasharray="6 4"/>
+<text class="message" x="133" y="304" text-anchor="start">agent/pre-step -&gt; enter</text>
+<path class="arrow" d="M120 316h80v16h-80"/>
+<text class="message" x="510" y="374" text-anchor="middle">append('step/start')</text>
+<path class="arrow" d="M120 386H900"/>
+<text class="message" x="133" y="428" text-anchor="start">renderPrompt(assembly)</text>
+<path class="arrow" d="M120 440h80v16h-80"/>
+<text class="message" x="133" y="498" text-anchor="start">agent/request -&gt;</text>
+<text class="message" x="133" y="516" text-anchor="start">proposedConfig</text>
+<path class="arrow" d="M120 528h80v16h-80"/>
+<text class="message" x="380" y="586" text-anchor="middle">prepareCall(proposedConfig, signal)</text>
+<path class="arrow" d="M120 598H640"/>
+<text class="message" x="380" y="640" text-anchor="middle">bound adapter + config + capabilities</text>
+<path class="arrow" d="M640 652H120" stroke-dasharray="6 4"/>
+<text class="message" x="250" y="694" text-anchor="middle">refreshContext(assembly,</text>
+<text class="message" x="250" y="712" text-anchor="middle">context)</text>
+<path class="arrow" d="M120 724H380"/>
+<text class="message" x="250" y="766" text-anchor="middle">current runtime context</text>
+<path class="arrow" d="M380 778H120" stroke-dasharray="6 4"/>
+<text class="message" x="510" y="820" text-anchor="middle">append system/message + admitted user/message</text>
+<path class="arrow" d="M120 832H900"/>
+<text class="message" x="510" y="874" text-anchor="middle">append request/header + request/context [as needed]</text>
+<path class="arrow" d="M120 886H900"/>
+<text class="message" x="510" y="928" text-anchor="middle">deriveMessages()</text>
+<path class="arrow" d="M120 940H900"/>
+<text class="message" x="510" y="982" text-anchor="middle">Message[]</text>
+<path class="arrow" d="M900 994H120" stroke-dasharray="6 4"/>
+<text class="message" x="133" y="1036" text-anchor="start">buildRequest(): config +</text>
+<text class="message" x="133" y="1054" text-anchor="start">messages + tools + signal</text>
+<path class="arrow" d="M120 1066h80v16h-80"/>
+<text x="560" y="1149" text-anchor="middle" font-size="14">从已认领输入开始；前置检查拒绝或取消时，不走完整接纳路径。</text>
+<text x="560" y="1174" text-anchor="middle" font-size="14">本图尚未发送模型请求；system prompt 的更新细节按适配器能力处理。</text>
+</g>
+</svg>

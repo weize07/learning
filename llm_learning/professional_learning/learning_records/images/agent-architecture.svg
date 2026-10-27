@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="580" viewBox="0 0 1100 580" role="img" aria-labelledby="title desc">
+  <title id="title">单 Agent：模型提出下一步，程序控制执行</title>
+  <desc id="desc">用户目标进入控制器。控制器把选定上下文发送给模型，模型返回行动建议或回答。控制器检查参数、权限与预算，交给工具执行器访问环境；执行结果回到控制器，更新状态并决定继续、等待、完成或失败。日志和验证贯穿过程。</desc>
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0L0 8L8 4Z" fill="#475569"/></marker>
+  </defs>
+  <rect width="1100" height="580" fill="#fff"/>
+  <g font-family="Segoe UI, Microsoft YaHei, sans-serif" fill="#0f172a" text-anchor="middle">
+    <text x="550" y="35" font-size="24" font-weight="bold">Agent 是一个系统，不只是一次模型调用</text>
+    <rect x="30" y="140" width="175" height="85" rx="10" fill="#f1f5f9" stroke="#64748b"/>
+    <text x="117" y="173" font-size="18">用户目标与限制</text><text x="117" y="201" font-size="15">身份 / 输入 / 确认</text>
+    <rect x="290" y="125" width="310" height="115" rx="10" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
+    <text x="445" y="155" font-size="19">控制器 / Runtime（程序）</text>
+    <text x="445" y="183" font-size="15">选上下文 · 校验 · 路由 · 预算</text>
+    <text x="445" y="211" font-size="15">继续 / 等待 / 完成 / 失败</text>
+    <rect x="790" y="125" width="275" height="115" rx="10" fill="#ede9fe" stroke="#7c3aed" stroke-width="2"/>
+    <text x="927" y="158" font-size="19">LLM（决策模型）</text>
+    <text x="927" y="187" font-size="15">根据当前上下文提出行动</text>
+    <text x="927" y="214" font-size="15">或生成澄清 / 最终回答</text>
+    <rect x="290" y="335" width="310" height="90" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/>
+    <text x="445" y="366" font-size="18">工具执行器</text>
+    <text x="445" y="396" font-size="15">执行获准调用 · 返回结果 / 错误</text>
+    <rect x="790" y="335" width="275" height="90" rx="10" fill="#fef3c7" stroke="#d97706" stroke-width="2"/>
+    <text x="927" y="366" font-size="18">环境 / 外部系统</text>
+    <text x="927" y="396" font-size="15">数据库 · 文件 · 测试 · 网页</text>
+    <rect x="30" y="335" width="175" height="90" rx="10" fill="#f1f5f9" stroke="#64748b"/>
+    <text x="117" y="366" font-size="18">任务状态</text><text x="117" y="394" font-size="14">证据 / 未知项 / 执行状态</text>
+    <text x="691" y="143" font-size="14">选定的上下文 →</text>
+    <text x="691" y="226" font-size="14">← 行动建议 / 回答</text>
+    <text x="509" y="290" font-size="14">获准调用 ↓</text>
+    <text x="333" y="290" font-size="14">↑ 结果 / 错误</text>
+    <text x="692" y="365" font-size="14">访问 / 操作 →</text>
+    <text x="692" y="414" font-size="14">← 真实反馈</text>
+    <text x="113" y="288" font-size="14">← 返回结果</text>
+    <rect x="30" y="480" width="1035" height="65" rx="10" fill="#f8fafc" stroke="#cbd5e1"/>
+    <text x="547" y="506" font-size="16">全程记录：调用、参数、执行证据、状态变化、耗时、成本与错误</text>
+    <text x="547" y="531" font-size="15">模型建议不等于执行成功；工具结果不等于新指令；完成必须有验证依据。</text>
+  </g>
+  <g fill="none" stroke="#475569" stroke-width="2.3" marker-end="url(#arrow)">
+    <path d="M205 165H290"/>
+    <path d="M290 210H245V265H117V225"/>
+    <path d="M600 160H790"/>
+    <path d="M790 207H600"/>
+    <path d="M490 240V335"/>
+    <path d="M385 335V240"/>
+    <path d="M600 357H790"/>
+    <path d="M790 400H600"/>
+    <path d="M290 355H205"/>
+    <path d="M205 408H250V225H290"/>
+  </g>
+</svg>

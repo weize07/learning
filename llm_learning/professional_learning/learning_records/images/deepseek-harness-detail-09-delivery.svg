@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="1252" viewBox="0 0 1120 1252" role="img" aria-labelledby="title desc">
+<title id="title">9. 交付：引擎收束不等于业务成功</title>
+<desc id="desc">固定提交 571902028a75c64c1d767f4ae5fd099485f0ddf0 的静态主路径教学图。实线为调用或通知，虚线为返回或数据流；条件分支按标签和正文解释，不是实际运行轨迹。</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0L0 8L8 4Z" fill="#475569"/></marker></defs>
+<style>.message{font-family:Consolas,monospace;font-size:13px;fill:#0f172a}.arrow{fill:none;stroke:#475569;stroke-width:2;marker-end:url(#arrow)}</style>
+<rect width="1120" height="1252" fill="#fff"/>
+<g font-family="Segoe UI, Microsoft YaHei, sans-serif" fill="#0f172a">
+<text x="560" y="35" text-anchor="middle" font-size="23" font-weight="bold">9. 交付：引擎收束不等于业务成功</text>
+<text x="560" y="59" text-anchor="middle" font-size="14">先看职责边界，再按英文标签对照源码；折返箭头为对象内部动作</text>
+<rect x="15" y="76" width="210" height="64" rx="8" fill="#dbeafe" stroke="#64748b"/><text x="120" y="103" font-size="17" text-anchor="middle">Driver</text><text x="120" y="128" font-size="14" text-anchor="middle">运行边界</text>
+<rect x="275" y="76" width="210" height="64" rx="8" fill="#f1f5f9" stroke="#64748b"/><text x="380" y="103" font-size="17" text-anchor="middle">Inbox</text><text x="380" y="128" font-size="14" text-anchor="middle">待处理工作</text>
+<rect x="535" y="76" width="210" height="64" rx="8" fill="#ede9fe" stroke="#64748b"/><text x="640" y="103" font-size="17" text-anchor="middle">Session</text><text x="640" y="128" font-size="14" text-anchor="middle">事件与同步</text>
+<rect x="795" y="76" width="210" height="64" rx="8" fill="#dcfce7" stroke="#64748b"/><text x="900" y="103" font-size="17" text-anchor="middle">Entry</text><text x="900" y="128" font-size="14" text-anchor="middle">headless 交付</text>
+<path d="M120 140V1150" stroke="#cbd5e1" stroke-dasharray="6 5"/>
+<path d="M380 140V1150" stroke="#cbd5e1" stroke-dasharray="6 5"/>
+<path d="M640 140V1150" stroke="#cbd5e1" stroke-dasharray="6 5"/>
+<path d="M900 140V1150" stroke="#cbd5e1" stroke-dasharray="6 5"/>
+<text class="message" x="380" y="178" text-anchor="middle">append('step/end')</text>
+<path class="arrow" d="M120 190H640"/>
+<text class="message" x="250" y="232" text-anchor="middle">check nextStep</text>
+<path class="arrow" d="M120 244H380"/>
+<text class="message" x="250" y="286" text-anchor="middle">[] [this example]</text>
+<path class="arrow" d="M380 298H120" stroke-dasharray="6 4"/>
+<text class="message" x="133" y="340" text-anchor="start">await serial</text>
+<text class="message" x="133" y="358" text-anchor="start">agent/turn-stopping</text>
+<path class="arrow" d="M120 370h80v16h-80"/>
+<text class="message" x="250" y="428" text-anchor="middle">recheck nextStep</text>
+<path class="arrow" d="M120 440H380"/>
+<text class="message" x="250" y="482" text-anchor="middle">[] [this example]</text>
+<path class="arrow" d="M380 494H120" stroke-dasharray="6 4"/>
+<text class="message" x="380" y="536" text-anchor="middle">append('turn/end', reason: completed)</text>
+<path class="arrow" d="M120 548H640"/>
+<text class="message" x="250" y="590" text-anchor="middle">hasPending?</text>
+<path class="arrow" d="M120 602H380"/>
+<text class="message" x="250" y="644" text-anchor="middle">false [this example]</text>
+<path class="arrow" d="M380 656H120" stroke-dasharray="6 4"/>
+<text class="message" x="133" y="698" text-anchor="start">setPhase(idle)</text>
+<path class="arrow" d="M120 710h80v16h-80"/>
+<text class="message" x="510" y="768" text-anchor="middle">whenIdle() resolves</text>
+<path class="arrow" d="M120 780H900" stroke-dasharray="6 4"/>
+<text class="message" x="770" y="822" text-anchor="middle">sessions.flush(session)</text>
+<path class="arrow" d="M900 834H640"/>
+<text class="message" x="770" y="876" text-anchor="middle">flush settled</text>
+<path class="arrow" d="M640 888H900" stroke-dasharray="6 4"/>
+<text class="message" x="770" y="930" text-anchor="middle">read this run event interval</text>
+<path class="arrow" d="M900 942H640"/>
+<text class="message" x="770" y="984" text-anchor="middle">last assistant text + turn</text>
+<text class="message" x="770" y="1002" text-anchor="middle">reason</text>
+<path class="arrow" d="M640 1014H900" stroke-dasharray="6 4"/>
+<text class="message" x="913" y="1056" text-anchor="start">stdout.write(text);</text>
+<text class="message" x="913" y="1074" text-anchor="start">io.exit(completed ? 0 :</text>
+<text class="message" x="913" y="1092" text-anchor="start">1)</text>
+<path class="arrow" d="M900 1104h80v16h-80"/>
+<text x="560" y="1187" text-anchor="middle" font-size="14">无额外输入、无子 Agent 的 headless 普通模式；json 输出另有投影。</text>
+<text x="560" y="1212" text-anchor="middle" font-size="14">虚线为等待完成或数据返回，不是 loop 直接回调入口；flush 保证取决于后端。</text>
+</g>
+</svg>

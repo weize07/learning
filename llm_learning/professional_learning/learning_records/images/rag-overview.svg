@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1060" height="540" viewBox="0 0 1060 540" role="img" aria-labelledby="title desc">
+  <title id="title">RAG：离线建库与在线问答</title>
+  <desc id="desc">离线将授权文档解析、切块并建立索引；在线用问题和权限检索，整理证据，再由生成模型回答并校验引用。检索索引存储表示与定位信息，原文片段作为模型输入。</desc>
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0L0 8L8 4Z" fill="#475569"/></marker>
+  </defs>
+  <rect width="1060" height="540" fill="#fff"/>
+  <g font-family="Segoe UI, Microsoft YaHei, sans-serif" fill="#0f172a" text-anchor="middle">
+    <text x="530" y="35" font-size="24" font-weight="bold">RAG：先找证据，再生成回答</text>
+    <rect x="20" y="58" width="1020" height="150" rx="12" fill="#eff6ff" stroke="#bfdbfe"/>
+    <text x="95" y="87" font-size="16">离线建库</text>
+    <rect x="40" y="110" width="160" height="65" rx="8" fill="#dbeafe" stroke="#2563eb"/>
+    <text x="120" y="136" font-size="17">授权文档</text><text x="120" y="158" font-size="14">来源 / 版本 / 权限</text>
+    <rect x="245" y="110" width="180" height="65" rx="8" fill="#dbeafe" stroke="#2563eb"/>
+    <text x="335" y="136" font-size="17">解析与切块</text><text x="335" y="158" font-size="14">正文片段 + 元数据</text>
+    <rect x="470" y="110" width="230" height="65" rx="8" fill="#dbeafe" stroke="#2563eb"/>
+    <text x="585" y="136" font-size="17">建立检索表示</text><text x="585" y="158" font-size="14">向量 / 关键词，可组合</text>
+    <rect x="745" y="110" width="265" height="65" rx="8" fill="#dbeafe" stroke="#2563eb"/>
+    <text x="877" y="136" font-size="17">索引 + 可回查的原文</text><text x="877" y="158" font-size="14">更新 / 删除时保持一致</text>
+    <rect x="20" y="230" width="1020" height="190" rx="12" fill="#f0fdf4" stroke="#bbf7d0"/>
+    <text x="95" y="259" font-size="16">在线问答</text>
+    <rect x="40" y="290" width="160" height="80" rx="8" fill="#dcfce7" stroke="#16a34a"/>
+    <text x="120" y="320" font-size="17">当前问题</text><text x="120" y="346" font-size="14">历史 / 身份 / 权限</text>
+    <rect x="245" y="290" width="180" height="80" rx="8" fill="#dcfce7" stroke="#16a34a"/>
+    <text x="335" y="320" font-size="17">检索允许的资料</text><text x="335" y="346" font-size="14">相关候选原文片段</text>
+    <rect x="470" y="290" width="230" height="80" rx="8" fill="#dcfce7" stroke="#16a34a"/>
+    <text x="585" y="320" font-size="17">整理证据上下文</text><text x="585" y="346" font-size="14">筛选 / 可选重排 / 编号</text>
+    <rect x="745" y="290" width="265" height="80" rx="8" fill="#dcfce7" stroke="#16a34a"/>
+    <text x="877" y="320" font-size="17">LLM 回答 → 校验</text><text x="877" y="346" font-size="14">结论 / 引用 / 信息不足</text>
+    <text x="530" y="454" font-size="17">检索器返回证据，生成模型读取原文；不是让模型直接“读向量数据库”。</text>
+    <text x="530" y="487" font-size="16">分别评测：资料质量 → 检索覆盖 → 证据使用 → 端到端任务成功</text>
+    <text x="530" y="517" font-size="14" fill="#475569">简化链路示意；向量检索、重排与模型微调均不是每个 RAG 系统的必选项。</text>
+  </g>
+  <g fill="none" stroke="#475569" stroke-width="2.5" marker-end="url(#arrow)">
+    <path d="M200 142H245 M425 142H470 M700 142H745"/>
+    <path d="M200 330H245 M425 330H470 M700 330H745"/>
+    <path d="M877 175V220H335V290"/>
+  </g>
+</svg>

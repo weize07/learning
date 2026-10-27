@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="340" viewBox="0 0 900 340" role="img" aria-labelledby="title desc">
+  <title id="title">RoPE: rotation and relative angle</title>
+  <desc id="desc">A unit vector rotates from zero to 60 degrees. Two position angles 30 and 60 degrees shift to 60 and 90 degrees, retaining a 30 degree difference.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0 0L0 6L7 3Z" fill="context-stroke"/></marker>
+  </defs>
+  <rect width="900" height="340" fill="#f8fafc"/>
+  <g stroke="#cbd5e1" stroke-width="2">
+    <path d="M40 245H280 M100 285V70 M335 245H580 M395 285V70 M630 245H875 M690 285V70"/>
+  </g>
+  <g fill="none" stroke-width="4" marker-end="url(#arrow)">
+    <path d="M100 245L230 245" stroke="#64748b"/>
+    <path d="M100 245L165 132.417" stroke="#2563eb"/>
+    <path d="M395 245L507.583 180" stroke="#2563eb"/>
+    <path d="M395 245L460 132.417" stroke="#16a34a"/>
+    <path d="M690 245L755 132.417" stroke="#2563eb"/>
+    <path d="M690 245L690 115" stroke="#16a34a"/>
+  </g>
+  <g font-family="Arial, sans-serif" fill="#0f172a" font-size="16">
+    <text x="55" y="35">1. Rotate a 2D vector</text>
+    <text x="350" y="35">2. Position angles</text>
+    <text x="645" y="35">3. Shift both positions</text>
+    <text x="160" y="272">x = (1, 0)</text>
+    <text x="145" y="110" fill="#2563eb">R(60) x</text>
+    <text x="40" y="315">Same length, new direction</text>
+    <text x="490" y="205" fill="#2563eb">Q: 30 deg</text>
+    <text x="425" y="110" fill="#16a34a">K: 60 deg</text>
+    <text x="355" y="315">Relative angle = 30 deg</text>
+    <text x="748" y="162" fill="#2563eb">Q: 60 deg</text>
+    <text x="650" y="95" fill="#16a34a">K: 90 deg</text>
+    <text x="650" y="315">Relative angle = 30 deg</text>
+  </g>
+</svg>

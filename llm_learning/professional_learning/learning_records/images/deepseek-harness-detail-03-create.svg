@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1380" height="1166" viewBox="0 0 1380 1166" role="img" aria-labelledby="title desc">
+<title id="title">3. 创建：准备完整运行单元，再发布</title>
+<desc id="desc">固定提交 571902028a75c64c1d767f4ae5fd099485f0ddf0 的静态主路径教学图。实线为调用或通知，虚线为返回或数据流；条件分支按标签和正文解释，不是实际运行轨迹。</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0L0 8L8 4Z" fill="#475569"/></marker></defs>
+<style>.message{font-family:Consolas,monospace;font-size:13px;fill:#0f172a}.arrow{fill:none;stroke:#475569;stroke-width:2;marker-end:url(#arrow)}</style>
+<rect width="1380" height="1166" fill="#fff"/>
+<g font-family="Segoe UI, Microsoft YaHei, sans-serif" fill="#0f172a">
+<text x="690" y="35" text-anchor="middle" font-size="23" font-weight="bold">3. 创建：准备完整运行单元，再发布</text>
+<text x="690" y="59" text-anchor="middle" font-size="14">先看职责边界，再按英文标签对照源码；折返箭头为对象内部动作</text>
+<rect x="15" y="76" width="210" height="64" rx="8" fill="#dbeafe" stroke="#64748b"/><text x="120" y="103" font-size="17" text-anchor="middle">Entry</text><text x="120" y="128" font-size="14" text-anchor="middle">应用入口</text>
+<rect x="275" y="76" width="210" height="64" rx="8" fill="#f1f5f9" stroke="#64748b"/><text x="380" y="103" font-size="17" text-anchor="middle">AgentRegistry</text><text x="380" y="128" font-size="14" text-anchor="middle">公共创建接口</text>
+<rect x="535" y="76" width="210" height="64" rx="8" fill="#ede9fe" stroke="#64748b"/><text x="640" y="103" font-size="17" text-anchor="middle">LoopFactory</text><text x="640" y="128" font-size="14" text-anchor="middle">默认工厂</text>
+<rect x="795" y="76" width="210" height="64" rx="8" fill="#dcfce7" stroke="#64748b"/><text x="900" y="103" font-size="17" text-anchor="middle">Session / storage</text><text x="900" y="128" font-size="14" text-anchor="middle">会话与可选存储</text>
+<rect x="1055" y="76" width="210" height="64" rx="8" fill="#fef3c7" stroke="#64748b"/><text x="1160" y="103" font-size="17" text-anchor="middle">Agent / scope</text><text x="1160" y="128" font-size="14" text-anchor="middle">执行对象与作用域</text>
+<path d="M120 140V1064" stroke="#cbd5e1" stroke-dasharray="6 5"/>
+<path d="M380 140V1064" stroke="#cbd5e1" stroke-dasharray="6 5"/>
+<path d="M640 140V1064" stroke="#cbd5e1" stroke-dasharray="6 5"/>
+<path d="M900 140V1064" stroke="#cbd5e1" stroke-dasharray="6 5"/>
+<path d="M1160 140V1064" stroke="#cbd5e1" stroke-dasharray="6 5"/>
+<text class="message" x="250" y="178" text-anchor="middle">create(options)</text>
+<path class="arrow" d="M120 190H380"/>
+<text class="message" x="510" y="232" text-anchor="middle">createAgent(ownerCtx,</text>
+<text class="message" x="510" y="250" text-anchor="middle">options)</text>
+<path class="arrow" d="M380 262H640"/>
+<text class="message" x="770" y="304" text-anchor="middle">sessions.prepare(sessionId)</text>
+<path class="arrow" d="M640 316H900"/>
+<text class="message" x="770" y="358" text-anchor="middle">private Session</text>
+<path class="arrow" d="M900 370H640" stroke-dasharray="6 4"/>
+<text class="message" x="770" y="412" text-anchor="middle">persistence.create(header)</text>
+<text class="message" x="770" y="430" text-anchor="middle">[if mounted]</text>
+<path class="arrow" d="M640 442H900"/>
+<text class="message" x="900" y="484" text-anchor="middle">new ReactLoopAgent(...)</text>
+<path class="arrow" d="M640 496H1160"/>
+<text class="message" x="900" y="538" text-anchor="middle">setup(agent.ctx, agent) [optional callback]</text>
+<path class="arrow" d="M640 550H1160"/>
+<text class="message" x="770" y="592" text-anchor="middle">sessions.enter(session)</text>
+<path class="arrow" d="M640 604H900"/>
+<text class="message" x="510" y="646" text-anchor="middle">agents.enter(agent)</text>
+<path class="arrow" d="M640 658H380"/>
+<text class="message" x="770" y="700" text-anchor="middle">sessions.announce(session)</text>
+<path class="arrow" d="M640 712H900"/>
+<text class="message" x="510" y="754" text-anchor="middle">await agents.announce(agent)</text>
+<path class="arrow" d="M640 766H380"/>
+<text class="message" x="393" y="808" text-anchor="start">await serial agent/created</text>
+<text class="message" x="393" y="826" text-anchor="start">listeners</text>
+<path class="arrow" d="M380 838h80v16h-80"/>
+<text class="message" x="510" y="896" text-anchor="middle">creation listeners settled</text>
+<path class="arrow" d="M380 908H640" stroke-dasharray="6 4"/>
+<text class="message" x="510" y="950" text-anchor="middle">AgentHandle { agent, dispose</text>
+<text class="message" x="510" y="968" text-anchor="middle">}</text>
+<path class="arrow" d="M640 980H380" stroke-dasharray="6 4"/>
+<text class="message" x="250" y="1022" text-anchor="middle">AgentHandle</text>
+<path class="arrow" d="M380 1034H120" stroke-dasharray="6 4"/>
+<text x="690" y="1101" text-anchor="middle" font-size="14">准备、setup 和创建监听器完成后才放行排队工作；创建不是模型请求。</text>
+<text x="690" y="1126" text-anchor="middle" font-size="14">正常新建路径；存储与失败清理已折叠，公共注册服务不拥有具体 loop 实现。</text>
+</g>
+</svg>

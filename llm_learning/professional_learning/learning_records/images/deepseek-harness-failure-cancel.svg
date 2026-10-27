@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1380" height="1288" viewBox="0 0 1380 1288" role="img" aria-labelledby="title desc">
+<title id="title">用户取消：传播停止意图，保留事实，再收束状态</title>
+<desc id="desc">固定版本 571902028a75c64c1d767f4ae5fd099485f0ddf0 的静态分支教学图，不是实际运行日志。实线表示调用或通知，虚线表示返回或完成，折返为内部动作。条件按正文解释。</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0L0 8L8 4Z" fill="#475569"/></marker></defs>
+<style>.message{font-family:Consolas,monospace;font-size:13px;fill:#0f172a}.arrow{fill:none;stroke:#475569;stroke-width:2;marker-end:url(#arrow)}</style>
+<rect width="1380" height="1288" fill="#fff"/>
+<g font-family="Segoe UI, Microsoft YaHei, sans-serif" fill="#0f172a">
+<text x="690" y="35" text-anchor="middle" font-size="23" font-weight="bold">用户取消：传播停止意图，保留事实，再收束状态</text>
+<text x="690" y="59" text-anchor="middle" font-size="14">先根据状态选择分支，再按英文标签对照源码；图中折叠部分包装与记录细节</text>
+<rect x="15" y="76" width="210" height="64" rx="8" fill="#dbeafe" stroke="#64748b"/>
+<text x="120" y="103" font-size="17" text-anchor="middle">Caller</text>
+<text x="120" y="128" font-size="14" text-anchor="middle">用户入口</text>
+<rect x="275" y="76" width="210" height="64" rx="8" fill="#ede9fe" stroke="#64748b"/>
+<text x="380" y="103" font-size="17" text-anchor="middle">Driver</text>
+<text x="380" y="128" font-size="14" text-anchor="middle">取消与收束</text>
+<rect x="535" y="76" width="210" height="64" rx="8" fill="#dcfce7" stroke="#64748b"/>
+<text x="640" y="103" font-size="17" text-anchor="middle">LLM / transport</text>
+<text x="640" y="128" font-size="14" text-anchor="middle">进行中的请求</text>
+<rect x="795" y="76" width="210" height="64" rx="8" fill="#fef3c7" stroke="#64748b"/>
+<text x="900" y="103" font-size="17" text-anchor="middle">StreamAttempt</text>
+<text x="900" y="128" font-size="14" text-anchor="middle">输出前缀定型</text>
+<rect x="1055" y="76" width="210" height="64" rx="8" fill="#f1f5f9" stroke="#64748b"/>
+<text x="1160" y="103" font-size="17" text-anchor="middle">Session</text>
+<text x="1160" y="128" font-size="14" text-anchor="middle">队列与响应记录</text>
+<path d="M120 140V1186" stroke="#cbd5e1" stroke-dasharray="6 5"/>
+<path d="M380 140V1186" stroke="#cbd5e1" stroke-dasharray="6 5"/>
+<path d="M640 140V1186" stroke="#cbd5e1" stroke-dasharray="6 5"/>
+<path d="M900 140V1186" stroke="#cbd5e1" stroke-dasharray="6 5"/>
+<path d="M1160 140V1186" stroke="#cbd5e1" stroke-dasharray="6 5"/>
+<text class="message" x="250" y="178" text-anchor="middle">cancel({ kind: 'user' })</text>
+<path class="arrow" d="M120 190H380"/>
+<text class="message" x="393" y="232" text-anchor="start">inbox.clear() [default</text>
+<text class="message" x="393" y="250" text-anchor="start">keepInbox: false]</text>
+<path class="arrow" d="M380 262h80v16h-80"/>
+<text class="message" x="770" y="320" text-anchor="middle">append('agent/inbox/spliced') [clear pending]</text>
+<path class="arrow" d="M380 332H1160"/>
+<text class="message" x="393" y="374" text-anchor="start">abortController.abort(cause</text>
+<text class="message" x="393" y="392" text-anchor="start">)</text>
+<path class="arrow" d="M380 404h80v16h-80"/>
+<text class="message" x="510" y="462" text-anchor="middle">AbortSignal becomes aborted</text>
+<path class="arrow" d="M380 474H640"/>
+<text class="message" x="510" y="516" text-anchor="middle">request iteration aborts</text>
+<path class="arrow" d="M640 528H380" stroke-dasharray="6 4"/>
+<text class="message" x="640" y="570" text-anchor="middle">interruptedBlocks()</text>
+<path class="arrow" d="M380 582H900"/>
+<text class="message" x="640" y="624" text-anchor="middle">safe visible prefix [this example]</text>
+<path class="arrow" d="M900 636H380" stroke-dasharray="6 4"/>
+<text class="message" x="640" y="678" text-anchor="middle">settle('assistant/message', appendCallback)</text>
+<path class="arrow" d="M380 690H900"/>
+<text class="message" x="1030" y="732" text-anchor="middle">append('assistant/message',</text>
+<text class="message" x="1030" y="750" text-anchor="middle">interrupted: true)</text>
+<path class="arrow" d="M900 762H1160"/>
+<text class="message" x="640" y="804" text-anchor="middle">settlement complete</text>
+<path class="arrow" d="M900 816H380" stroke-dasharray="6 4"/>
+<text class="message" x="770" y="858" text-anchor="middle">append('step/end')</text>
+<path class="arrow" d="M380 870H1160"/>
+<text class="message" x="770" y="912" text-anchor="middle">append('turn/end', reason: aborted)</text>
+<path class="arrow" d="M380 924H1160"/>
+<text class="message" x="393" y="966" text-anchor="start">driver converges to idle</text>
+<path class="arrow" d="M380 978h80v16h-80"/>
+<text class="message" x="250" y="1036" text-anchor="middle">whenIdle() resolves</text>
+<path class="arrow" d="M380 1048H120" stroke-dasharray="6 4"/>
+<text class="message" x="640" y="1090" text-anchor="middle">inspect turn outcome</text>
+<path class="arrow" d="M120 1102H1160"/>
+<text class="message" x="640" y="1144" text-anchor="middle">aborted, not completed</text>
+<path class="arrow" d="M1160 1156H120" stroke-dasharray="6 4"/>
+<text x="690" y="1223" text-anchor="middle" font-size="14">前提：活跃模型流已经交付可安全保留的前缀；无前缀等其他分支见正文。</text>
+<text x="690" y="1248" text-anchor="middle" font-size="14">没有独立工具正在执行；取消不是回滚，也不保证底层立刻停止。</text>
+</g>
+</svg>

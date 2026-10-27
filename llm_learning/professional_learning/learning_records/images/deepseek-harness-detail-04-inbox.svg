@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="1018" viewBox="0 0 1120 1018" role="img" aria-labelledby="title desc">
+<title id="title">4. 输入：先排队，在确定的边界认领</title>
+<desc id="desc">固定提交 571902028a75c64c1d767f4ae5fd099485f0ddf0 的静态主路径教学图。实线为调用或通知，虚线为返回或数据流；条件分支按标签和正文解释，不是实际运行轨迹。</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0L0 8L8 4Z" fill="#475569"/></marker></defs>
+<style>.message{font-family:Consolas,monospace;font-size:13px;fill:#0f172a}.arrow{fill:none;stroke:#475569;stroke-width:2;marker-end:url(#arrow)}</style>
+<rect width="1120" height="1018" fill="#fff"/>
+<g font-family="Segoe UI, Microsoft YaHei, sans-serif" fill="#0f172a">
+<text x="560" y="35" text-anchor="middle" font-size="23" font-weight="bold">4. 输入：先排队，在确定的边界认领</text>
+<text x="560" y="59" text-anchor="middle" font-size="14">先看职责边界，再按英文标签对照源码；折返箭头为对象内部动作</text>
+<rect x="15" y="76" width="210" height="64" rx="8" fill="#dbeafe" stroke="#64748b"/><text x="120" y="103" font-size="17" text-anchor="middle">Entry</text><text x="120" y="128" font-size="14" text-anchor="middle">输入来源</text>
+<rect x="275" y="76" width="210" height="64" rx="8" fill="#f1f5f9" stroke="#64748b"/><text x="380" y="103" font-size="17" text-anchor="middle">Agent / driver</text><text x="380" y="128" font-size="14" text-anchor="middle">单个驱动</text>
+<rect x="535" y="76" width="210" height="64" rx="8" fill="#ede9fe" stroke="#64748b"/><text x="640" y="103" font-size="17" text-anchor="middle">Inbox</text><text x="640" y="128" font-size="14" text-anchor="middle">待处理输入</text>
+<rect x="795" y="76" width="210" height="64" rx="8" fill="#dcfce7" stroke="#64748b"/><text x="900" y="103" font-size="17" text-anchor="middle">Session</text><text x="900" y="128" font-size="14" text-anchor="middle">事件记录</text>
+<path d="M120 140V916" stroke="#cbd5e1" stroke-dasharray="6 5"/>
+<path d="M380 140V916" stroke="#cbd5e1" stroke-dasharray="6 5"/>
+<path d="M640 140V916" stroke="#cbd5e1" stroke-dasharray="6 5"/>
+<path d="M900 140V916" stroke="#cbd5e1" stroke-dasharray="6 5"/>
+<text class="message" x="250" y="178" text-anchor="middle">followup(userMessage)</text>
+<path class="arrow" d="M120 190H380"/>
+<text class="message" x="393" y="232" text-anchor="start">send(message, 'next-turn',</text>
+<text class="message" x="393" y="250" text-anchor="start">true)</text>
+<path class="arrow" d="M380 262h80v16h-80"/>
+<text class="message" x="510" y="320" text-anchor="middle">splice('next-turn', ...,</text>
+<text class="message" x="510" y="338" text-anchor="middle">[message])</text>
+<path class="arrow" d="M380 350H640"/>
+<text class="message" x="770" y="392" text-anchor="middle">append('agent/inbox/spliced')</text>
+<path class="arrow" d="M640 404H900"/>
+<text class="message" x="770" y="446" text-anchor="middle">updated inbox projection</text>
+<path class="arrow" d="M900 458H640" stroke-dasharray="6 4"/>
+<text class="message" x="510" y="500" text-anchor="middle">splice complete</text>
+<path class="arrow" d="M640 512H380" stroke-dasharray="6 4"/>
+<text class="message" x="393" y="554" text-anchor="start">wakeDriver() [if idle]</text>
+<path class="arrow" d="M380 566h80v16h-80"/>
+<text class="message" x="393" y="624" text-anchor="start">kick() -&gt; turn()</text>
+<path class="arrow" d="M380 636h80v16h-80"/>
+<text class="message" x="640" y="694" text-anchor="middle">append('turn/start')</text>
+<path class="arrow" d="M380 706H900"/>
+<text class="message" x="510" y="748" text-anchor="middle">claim('next-turn', turn)</text>
+<path class="arrow" d="M380 760H640"/>
+<text class="message" x="770" y="802" text-anchor="middle">append claim splices (remove</text>
+<text class="message" x="770" y="820" text-anchor="middle">pending)</text>
+<path class="arrow" d="M640 832H900"/>
+<text class="message" x="510" y="874" text-anchor="middle">claimed UserMessage[]</text>
+<path class="arrow" d="M640 886H380" stroke-dasharray="6 4"/>
+<text x="560" y="953" text-anchor="middle" font-size="14">本图截止于认领输入；user/message 接纳在第 5 节，不在入队时完成。</text>
+<text x="560" y="978" text-anchor="middle" font-size="14">活跃驱动不会因每条输入再开一个 loop；取消与维护状态分支未展开。</text>
+</g>
+</svg>

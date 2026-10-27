@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="680" viewBox="0 0 1120 680" role="img" aria-labelledby="title desc">
+  <title id="title">最小 Agent loop：结果回填与显式停止</title>
+  <desc id="desc">检查取消和预算，构造上下文调用模型，解析完整响应。工具调用经校验后执行、记录并关联回填，然后再次检查预算。澄清进入等待；最终回答经过完成校验才标为完成；异常或预算耗尽显式停止。</desc>
+  <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0L0 8L8 4Z" fill="#475569"/></marker></defs>
+  <rect width="1120" height="680" fill="#fff"/>
+  <g font-family="Segoe UI, Microsoft YaHei, sans-serif" fill="#0f172a" text-anchor="middle">
+    <text x="560" y="34" font-size="24" font-weight="bold">最小 Agent loop：不是无条件重复调用模型</text>
+    <rect x="70" y="65" width="440" height="60" rx="10" fill="#dbeafe" stroke="#2563eb"/>
+    <text x="290" y="91" font-size="18">检查取消、剩余预算与任务状态</text><text x="290" y="113" font-size="14">满足继续条件才发起下一次模型调用</text>
+    <rect x="70" y="165" width="440" height="65" rx="10" fill="#ede9fe" stroke="#7c3aed"/>
+    <text x="290" y="191" font-size="18">构造上下文 → 调模型 → 解析完整响应</text><text x="290" y="216" font-size="14">响应截断 / 协议异常不能直接当作可执行命令</text>
+    <rect x="70" y="270" width="440" height="60" rx="10" fill="#f1f5f9" stroke="#64748b"/>
+    <text x="290" y="306" font-size="18">工具调用？澄清？最终回答？</text>
+    <rect x="70" y="380" width="440" height="65" rx="10" fill="#dcfce7" stroke="#16a34a"/>
+    <text x="290" y="406" font-size="18">校验工具、参数、权限、依赖与预算</text><text x="290" y="431" font-size="14">通过后执行；不通过则记录错误，不执行</text>
+    <rect x="70" y="490" width="440" height="65" rx="10" fill="#dcfce7" stroke="#16a34a"/>
+    <text x="290" y="517" font-size="18">记录结果 / 错误 → 更新状态 → 关联回填</text><text x="290" y="542" font-size="14">call ID 对应本次调用；失败不伪装成成功</text>
+    <rect x="700" y="65" width="350" height="60" rx="10" fill="#fee2e2" stroke="#dc2626"/>
+    <text x="875" y="101" font-size="17">取消 / 耗尽 / 运行失败：明确停止</text>
+    <rect x="700" y="270" width="350" height="60" rx="10" fill="#fef3c7" stroke="#d97706"/>
+    <text x="875" y="306" font-size="17">澄清 → WAITING_USER，暂停</text>
+    <rect x="700" y="380" width="350" height="65" rx="10" fill="#f1f5f9" stroke="#64748b"/>
+    <text x="875" y="406" font-size="17">最终回答 → 校验完成条件</text><text x="875" y="431" font-size="14">缺证据时不能标成成功</text>
+    <rect x="700" y="490" width="350" height="65" rx="10" fill="#dbeafe" stroke="#2563eb"/>
+    <text x="875" y="516" font-size="17">完成 / 等待 / 明确未完成</text><text x="875" y="542" font-size="14">可修复且有预算时，按规则继续</text>
+    <text x="560" y="613" font-size="16">返回边表示“可能继续”，不是每次都继续；所有分支都记录真实状态。</text>
+    <text x="560" y="644" font-size="15">最小版本先串行执行双只读工具；持久化、恢复与写操作语义下一专题展开。</text>
+  </g>
+  <g fill="none" stroke="#475569" stroke-width="2.3" marker-end="url(#arrow)">
+    <path d="M290 125V165 M290 230V270 M290 330V380 M290 445V490"/>
+    <path d="M70 523H30V95H70"/>
+    <path d="M510 95H700 M510 300H700"/>
+    <path d="M510 315H605V412H700"/>
+    <path d="M875 445V490"/>
+    <path d="M510 192H630V114H700"/>
+  </g>
+</svg>

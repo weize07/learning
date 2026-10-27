@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="460" viewBox="0 0 1100 460" role="img" aria-labelledby="title desc">
+  <title id="title">LoRA: frozen projection plus trainable correction</title>
+  <desc id="desc">The full four-dimensional input enters both branches. The frozen 4 by 6 base matrix produces six-dimensional output. Trainable matrices A, 4 by 2, and B, 2 by 6, produce a correction scaled by s. The two six-dimensional results are added.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="4" orient="auto"><path d="M0 0L0 8L8 4Z" fill="#475569"/></marker>
+  </defs>
+  <rect width="1100" height="460" fill="#fff"/>
+  <g font-family="Segoe UI, Microsoft YaHei, sans-serif" fill="#0f172a">
+    <text x="35" y="36" font-size="23" font-weight="bold">LoRA = 原投影结果 + 学到的修正量</text>
+    <text x="35" y="64" font-size="15">示例：输入 4 维，输出 6 维，适配器中间宽度 r = 2</text>
+    <rect x="35" y="208" width="120" height="70" rx="10" fill="#f1f5f9" stroke="#64748b" stroke-width="2"/>
+    <text x="95" y="237" text-anchor="middle" font-size="18">完整输入 x</text>
+    <text x="95" y="260" text-anchor="middle" font-size="15">1 × 4</text>
+    <rect x="250" y="100" width="210" height="80" rx="10" fill="#e2e8f0" stroke="#64748b" stroke-width="2"/>
+    <text x="355" y="129" text-anchor="middle" font-size="18">原权重 W₀：4 × 6</text>
+    <text x="355" y="157" text-anchor="middle" font-size="16">冻结，不更新</text>
+    <rect x="545" y="107" width="195" height="66" rx="10" fill="#f1f5f9" stroke="#64748b"/>
+    <text x="642" y="133" text-anchor="middle" font-size="17">原结果 xW₀</text>
+    <text x="642" y="156" text-anchor="middle" font-size="15">1 × 6</text>
+    <rect x="250" y="300" width="145" height="80" rx="10" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
+    <text x="322" y="330" text-anchor="middle" font-size="17">A：4 × 2</text>
+    <text x="322" y="357" text-anchor="middle" font-size="16">可训练</text>
+    <rect x="475" y="300" width="145" height="80" rx="10" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
+    <text x="547" y="330" text-anchor="middle" font-size="17">B：2 × 6</text>
+    <text x="547" y="357" text-anchor="middle" font-size="16">可训练</text>
+    <rect x="675" y="307" width="100" height="66" rx="10" fill="#dbeafe" stroke="#2563eb"/>
+    <text x="725" y="334" text-anchor="middle" font-size="17">乘以 s</text>
+    <text x="725" y="356" text-anchor="middle" font-size="15">1 × 6</text>
+    <circle cx="875" cy="243" r="29" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/>
+    <text x="875" y="251" text-anchor="middle" font-size="28">+</text>
+    <rect x="940" y="208" width="135" height="70" rx="10" fill="#dcfce7" stroke="#16a34a" stroke-width="2"/>
+    <text x="1007" y="237" text-anchor="middle" font-size="18">最终输出 y</text>
+    <text x="1007" y="260" text-anchor="middle" font-size="15">1 × 6</text>
+    <text x="435" y="322" text-anchor="middle" font-size="15" fill="#2563eb">xA</text>
+    <text x="435" y="364" text-anchor="middle" font-size="14">1 × 2</text>
+    <text x="810" y="392" text-anchor="middle" font-size="15" fill="#2563eb">修正量 s(xA)B</text>
+    <text x="35" y="425" font-size="16">两条支路都读取完整输入；只训练蓝色矩阵。相加不是拼接：6 维 + 6 维仍为 6 维。</text>
+    <text x="35" y="448" font-size="14" fill="#475569">图示针对一个线性投影，不是另加一个 Transformer 层；原模型计算仍然存在。</text>
+  </g>
+  <g fill="none" stroke="#475569" stroke-width="2.5" marker-end="url(#arrow)">
+    <path d="M155 243H200V140H250"/>
+    <path d="M200 243V340H250"/>
+    <path d="M460 140H545"/>
+    <path d="M740 140H875V214"/>
+    <path d="M395 340H475"/>
+    <path d="M620 340H675"/>
+    <path d="M775 340H875V272"/>
+    <path d="M904 243H940"/>
+  </g>
+</svg>

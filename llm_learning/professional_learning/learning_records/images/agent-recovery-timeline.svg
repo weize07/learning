@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="610" viewBox="0 0 1100 610" role="img" aria-labelledby="title desc">
+  <title id="title">Agent 恢复：外部已执行，但本地尚未确认</title>
+  <desc id="desc">时间线展示应用先持久记录操作意图和幂等键，再发送已授权请求。外部服务提交后，响应丢失，本地记录仍未确认。恢复时先检查业务状态或按服务保证使用原幂等键，而不是创建新的请求；本地快照不能回滚外部操作。</desc>
+  <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0L0 8L8 4Z" fill="#475569"/></marker></defs>
+  <rect width="1100" height="610" fill="#fff"/>
+  <g font-family="Segoe UI, Microsoft YaHei, sans-serif" fill="#0f172a" text-anchor="middle">
+    <text x="550" y="35" font-size="23" font-weight="bold">最危险的窗口：外部成功，本地还不知道</text>
+    <rect x="40" y="65" width="240" height="54" rx="9" fill="#dbeafe" stroke="#2563eb"/>
+    <text x="160" y="98" font-size="18">应用 / Runtime</text>
+    <rect x="420" y="65" width="240" height="54" rx="9" fill="#ede9fe" stroke="#7c3aed"/>
+    <text x="540" y="98" font-size="18">持久化记录</text>
+    <rect x="800" y="65" width="260" height="54" rx="9" fill="#dcfce7" stroke="#16a34a"/>
+    <text x="930" y="98" font-size="18">外部业务服务</text>
+    <text x="350" y="151" font-size="15">① 保存获准操作、参数与稳定幂等键</text>
+    <text x="350" y="206" font-size="15">② 持久保存成功，才允许发送</text>
+    <text x="550" y="261" font-size="15">③ 发送业务请求，携带同一幂等键</text>
+    <rect x="805" y="294" width="250" height="48" rx="8" fill="#dcfce7" stroke="#16a34a"/>
+    <text x="930" y="324" font-size="16">④ 外部已提交并生成操作记录</text>
+    <text x="550" y="373" font-size="16" fill="#dc2626">⑤ 返回途中断线：本地尚未持久确认结果</text>
+    <rect x="40" y="410" width="1020" height="57" rx="8" fill="#fff7ed" stroke="#ea580c"/>
+    <text x="550" y="434" font-size="17">应用重启：本地 PENDING / UNKNOWN 不代表“外部没有执行”</text>
+    <text x="550" y="455" font-size="14">先核对业务状态；只有符合服务的幂等与重试契约，才使用原键安全重试</text>
+    <text x="550" y="499" font-size="15">⑥ 查询状态 / 在契约允许时用原键重试 → 得到可核对的最终结果</text>
+    <text x="550" y="562" font-size="15">回滚 checkpoint 不能撤销外部操作；无法确认时应显式等待核查，不盲目再提交。</text>
+    <text x="550" y="588" font-size="14">虚构已授权写操作的故障示例；不改变前篇“只查询、不提交”的任务限制。</text>
+  </g>
+  <g stroke="#cbd5e1" stroke-width="2" stroke-dasharray="6 5">
+    <path d="M160 119V400 M540 119V400 M930 119V294"/>
+  </g>
+  <g fill="none" stroke="#475569" stroke-width="2.3" marker-end="url(#arrow)">
+    <path d="M160 168H540 M540 223H160 M160 278H930"/>
+    <path d="M160 516H930"/>
+  </g>
+  <path d="M930 390H185" fill="none" stroke="#dc2626" stroke-width="2.3" stroke-dasharray="7 5"/>
+  <path d="M160 378L180 402 M180 378L160 402" stroke="#dc2626" stroke-width="3"/>
+</svg>

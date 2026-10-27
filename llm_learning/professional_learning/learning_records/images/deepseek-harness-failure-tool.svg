@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1380" height="1198" viewBox="0 0 1380 1198" role="img" aria-labelledby="title desc">
+<title id="title">读取失败：把环境反馈交回模型，而不是伪造成功</title>
+<desc id="desc">固定版本 571902028a75c64c1d767f4ae5fd099485f0ddf0 的静态分支教学图，不是实际运行日志。实线表示调用或通知，虚线表示返回或完成，折返为内部动作。条件按正文解释。</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0L0 8L8 4Z" fill="#475569"/></marker></defs>
+<style>.message{font-family:Consolas,monospace;font-size:13px;fill:#0f172a}.arrow{fill:none;stroke:#475569;stroke-width:2;marker-end:url(#arrow)}</style>
+<rect width="1380" height="1198" fill="#fff"/>
+<g font-family="Segoe UI, Microsoft YaHei, sans-serif" fill="#0f172a">
+<text x="690" y="35" text-anchor="middle" font-size="23" font-weight="bold">读取失败：把环境反馈交回模型，而不是伪造成功</text>
+<text x="690" y="59" text-anchor="middle" font-size="14">先根据状态选择分支，再按英文标签对照源码；图中折叠部分包装与记录细节</text>
+<rect x="15" y="76" width="210" height="64" rx="8" fill="#dbeafe" stroke="#64748b"/>
+<text x="120" y="103" font-size="17" text-anchor="middle">Driver</text>
+<text x="120" y="128" font-size="14" text-anchor="middle">循环控制</text>
+<rect x="275" y="76" width="210" height="64" rx="8" fill="#ede9fe" stroke="#64748b"/>
+<text x="380" y="103" font-size="17" text-anchor="middle">Scheduler / tools</text>
+<text x="380" y="128" font-size="14" text-anchor="middle">调度与结果定型</text>
+<rect x="535" y="76" width="210" height="64" rx="8" fill="#dcfce7" stroke="#64748b"/>
+<text x="640" y="103" font-size="17" text-anchor="middle">Read / ctx.fs</text>
+<text x="640" y="128" font-size="14" text-anchor="middle">文件读取</text>
+<rect x="795" y="76" width="210" height="64" rx="8" fill="#fef3c7" stroke="#64748b"/>
+<text x="900" y="103" font-size="17" text-anchor="middle">Session</text>
+<text x="900" y="128" font-size="14" text-anchor="middle">调用与结果记录</text>
+<rect x="1055" y="76" width="210" height="64" rx="8" fill="#f1f5f9" stroke="#64748b"/>
+<text x="1160" y="103" font-size="17" text-anchor="middle">LLM service</text>
+<text x="1160" y="128" font-size="14" text-anchor="middle">后续决策</text>
+<path d="M120 140V1096" stroke="#cbd5e1" stroke-dasharray="6 5"/>
+<path d="M380 140V1096" stroke="#cbd5e1" stroke-dasharray="6 5"/>
+<path d="M640 140V1096" stroke="#cbd5e1" stroke-dasharray="6 5"/>
+<path d="M900 140V1096" stroke="#cbd5e1" stroke-dasharray="6 5"/>
+<path d="M1160 140V1096" stroke="#cbd5e1" stroke-dasharray="6 5"/>
+<text class="message" x="510" y="178" text-anchor="middle">append('assistant/message') [tool-call]</text>
+<path class="arrow" d="M120 190H900"/>
+<text class="message" x="250" y="232" text-anchor="middle">executeToolCalls(...)</text>
+<path class="arrow" d="M120 244H380"/>
+<text class="message" x="640" y="286" text-anchor="middle">append('tool/call')</text>
+<path class="arrow" d="M380 298H900"/>
+<text class="message" x="510" y="340" text-anchor="middle">read(args) -&gt; file backend</text>
+<path class="arrow" d="M380 352H640"/>
+<text class="message" x="510" y="394" text-anchor="middle">throw read error [e.g.</text>
+<text class="message" x="510" y="412" text-anchor="middle">missing file]</text>
+<path class="arrow" d="M640 424H380" stroke-dasharray="6 4"/>
+<text class="message" x="393" y="466" text-anchor="start">toolErrorResult(error) -&gt;</text>
+<text class="message" x="393" y="484" text-anchor="start">isError: true</text>
+<path class="arrow" d="M380 496h80v16h-80"/>
+<text class="message" x="640" y="554" text-anchor="middle">append('tool/result') [same callId]</text>
+<path class="arrow" d="M380 566H900"/>
+<text class="message" x="250" y="608" text-anchor="middle">{ concluded: false }</text>
+<text class="message" x="250" y="626" text-anchor="middle">[ordinary result]</text>
+<path class="arrow" d="M380 638H120" stroke-dasharray="6 4"/>
+<text class="message" x="133" y="680" text-anchor="start">step() returns null;</text>
+<text class="message" x="133" y="698" text-anchor="start">continue turn</text>
+<path class="arrow" d="M120 710h80v16h-80"/>
+<text class="message" x="510" y="768" text-anchor="middle">append('step/end')</text>
+<path class="arrow" d="M120 780H900"/>
+<text class="message" x="133" y="822" text-anchor="start">next preStep() / step()</text>
+<path class="arrow" d="M120 834h80v16h-80"/>
+<text class="message" x="510" y="892" text-anchor="middle">deriveMessages()</text>
+<path class="arrow" d="M120 904H900"/>
+<text class="message" x="510" y="946" text-anchor="middle">history includes tool-call + failed tool result</text>
+<path class="arrow" d="M900 958H120" stroke-dasharray="6 4"/>
+<text class="message" x="640" y="1000" text-anchor="middle">stream(request)</text>
+<path class="arrow" d="M120 1012H1160"/>
+<text class="message" x="640" y="1054" text-anchor="middle">new tool-call or explanation [illustrative]</text>
+<path class="arrow" d="M1160 1066H120" stroke-dasharray="6 4"/>
+<text x="690" y="1133" text-anchor="middle" font-size="14">普通工具失败路径；策略、审批与结果渲染已折叠。</text>
+<text x="690" y="1158" text-anchor="middle" font-size="14">后续能否修正由证据和模型行为决定；llm-retry 不负责自动重放 read。</text>
+</g>
+</svg>
